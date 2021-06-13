@@ -1,0 +1,407 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		20FAEF5426754FCF00B3E1BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAEF5326754FCF00B3E1BF /* AppDelegate.swift */; };
+		20FAEF5626754FCF00B3E1BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAEF5526754FCF00B3E1BF /* SceneDelegate.swift */; };
+		20FAEF5826754FCF00B3E1BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAEF5726754FCF00B3E1BF /* ViewController.swift */; };
+		20FAEF5B26754FCF00B3E1BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20FAEF5926754FCF00B3E1BF /* Main.storyboard */; };
+		20FAEF5E26754FCF00B3E1BF /* Shopper_Logger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20FAEF5C26754FCF00B3E1BF /* Shopper_Logger.xcdatamodeld */; };
+		20FAEF6026754FD100B3E1BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20FAEF5F26754FD100B3E1BF /* Assets.xcassets */; };
+		20FAEF6326754FD100B3E1BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20FAEF6126754FD100B3E1BF /* LaunchScreen.storyboard */; };
+		20FAEF6B267550FE00B3E1BF /* OrderLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAEF6A267550FE00B3E1BF /* OrderLogViewController.swift */; };
+		20FAEF702675514200B3E1BF /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAEF6F2675514200B3E1BF /* OrderModel.swift */; };
+		20FAEF722675543E00B3E1BF /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAEF712675543E00B3E1BF /* PhotoCollectionViewCell.swift */; };
+		20FAEF74267696FC00B3E1BF /* ViewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAEF73267696FC00B3E1BF /* ViewOrderViewController.swift */; };
+		20FAEF762676A79D00B3E1BF /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAEF752676A79D00B3E1BF /* PhotoViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		20FAEF5026754FCF00B3E1BF /* Shopper Logger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shopper Logger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		20FAEF5326754FCF00B3E1BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		20FAEF5526754FCF00B3E1BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		20FAEF5726754FCF00B3E1BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		20FAEF5A26754FCF00B3E1BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		20FAEF5D26754FCF00B3E1BF /* Shopper_Logger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shopper_Logger.xcdatamodel; sourceTree = "<group>"; };
+		20FAEF5F26754FD100B3E1BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		20FAEF6226754FD100B3E1BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		20FAEF6426754FD100B3E1BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20FAEF6A267550FE00B3E1BF /* OrderLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderLogViewController.swift; sourceTree = "<group>"; };
+		20FAEF6F2675514200B3E1BF /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
+		20FAEF712675543E00B3E1BF /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoCollectionViewCell.swift; path = "Shopper Logger/View/PhotoCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
+		20FAEF73267696FC00B3E1BF /* ViewOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOrderViewController.swift; sourceTree = "<group>"; };
+		20FAEF752676A79D00B3E1BF /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoViewController.swift; path = "Shopper Logger/View/PhotoViewController.swift"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		20FAEF4D26754FCF00B3E1BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		20FAEF4726754FCF00B3E1BF = {
+			isa = PBXGroup;
+			children = (
+				20FAEF5226754FCF00B3E1BF /* Shopper Logger */,
+				20FAEF5126754FCF00B3E1BF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		20FAEF5126754FCF00B3E1BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				20FAEF5026754FCF00B3E1BF /* Shopper Logger.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		20FAEF5226754FCF00B3E1BF /* Shopper Logger */ = {
+			isa = PBXGroup;
+			children = (
+				20FAEF5326754FCF00B3E1BF /* AppDelegate.swift */,
+				20FAEF5526754FCF00B3E1BF /* SceneDelegate.swift */,
+				20FAEF6E2675511B00B3E1BF /* Model */,
+				20FAEF6D2675511200B3E1BF /* View */,
+				20FAEF6C2675510A00B3E1BF /* Controller */,
+				20FAEF5F26754FD100B3E1BF /* Assets.xcassets */,
+				20FAEF6126754FD100B3E1BF /* LaunchScreen.storyboard */,
+				20FAEF6426754FD100B3E1BF /* Info.plist */,
+				20FAEF5C26754FCF00B3E1BF /* Shopper_Logger.xcdatamodeld */,
+			);
+			path = "Shopper Logger";
+			sourceTree = "<group>";
+		};
+		20FAEF6C2675510A00B3E1BF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				20FAEF5726754FCF00B3E1BF /* ViewController.swift */,
+				20FAEF6A267550FE00B3E1BF /* OrderLogViewController.swift */,
+				20FAEF73267696FC00B3E1BF /* ViewOrderViewController.swift */,
+				20FAEF752676A79D00B3E1BF /* PhotoViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		20FAEF6D2675511200B3E1BF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				20FAEF5926754FCF00B3E1BF /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		20FAEF6E2675511B00B3E1BF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				20FAEF712675543E00B3E1BF /* PhotoCollectionViewCell.swift */,
+				20FAEF6F2675514200B3E1BF /* OrderModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		20FAEF4F26754FCF00B3E1BF /* Shopper Logger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 20FAEF6726754FD100B3E1BF /* Build configuration list for PBXNativeTarget "Shopper Logger" */;
+			buildPhases = (
+				20FAEF4C26754FCF00B3E1BF /* Sources */,
+				20FAEF4D26754FCF00B3E1BF /* Frameworks */,
+				20FAEF4E26754FCF00B3E1BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Shopper Logger";
+			productName = "Shopper Logger";
+			productReference = 20FAEF5026754FCF00B3E1BF /* Shopper Logger.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		20FAEF4826754FCF00B3E1BF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					20FAEF4F26754FCF00B3E1BF = {
+						CreatedOnToolsVersion = 12.5;
+					};
+				};
+			};
+			buildConfigurationList = 20FAEF4B26754FCF00B3E1BF /* Build configuration list for PBXProject "Shopper Logger" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 20FAEF4726754FCF00B3E1BF;
+			productRefGroup = 20FAEF5126754FCF00B3E1BF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				20FAEF4F26754FCF00B3E1BF /* Shopper Logger */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		20FAEF4E26754FCF00B3E1BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20FAEF6326754FD100B3E1BF /* LaunchScreen.storyboard in Resources */,
+				20FAEF6026754FD100B3E1BF /* Assets.xcassets in Resources */,
+				20FAEF5B26754FCF00B3E1BF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		20FAEF4C26754FCF00B3E1BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				20FAEF702675514200B3E1BF /* OrderModel.swift in Sources */,
+				20FAEF5826754FCF00B3E1BF /* ViewController.swift in Sources */,
+				20FAEF5426754FCF00B3E1BF /* AppDelegate.swift in Sources */,
+				20FAEF5626754FCF00B3E1BF /* SceneDelegate.swift in Sources */,
+				20FAEF722675543E00B3E1BF /* PhotoCollectionViewCell.swift in Sources */,
+				20FAEF762676A79D00B3E1BF /* PhotoViewController.swift in Sources */,
+				20FAEF5E26754FCF00B3E1BF /* Shopper_Logger.xcdatamodeld in Sources */,
+				20FAEF74267696FC00B3E1BF /* ViewOrderViewController.swift in Sources */,
+				20FAEF6B267550FE00B3E1BF /* OrderLogViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		20FAEF5926754FCF00B3E1BF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20FAEF5A26754FCF00B3E1BF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		20FAEF6126754FD100B3E1BF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				20FAEF6226754FD100B3E1BF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		20FAEF6526754FD100B3E1BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		20FAEF6626754FD100B3E1BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		20FAEF6826754FD100B3E1BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 79NLKX484J;
+				INFOPLIST_FILE = "Shopper Logger/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jareyesda.Shopper-Logger";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		20FAEF6926754FD100B3E1BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 79NLKX484J;
+				INFOPLIST_FILE = "Shopper Logger/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jareyesda.Shopper-Logger";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		20FAEF4B26754FCF00B3E1BF /* Build configuration list for PBXProject "Shopper Logger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20FAEF6526754FD100B3E1BF /* Debug */,
+				20FAEF6626754FD100B3E1BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		20FAEF6726754FD100B3E1BF /* Build configuration list for PBXNativeTarget "Shopper Logger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				20FAEF6826754FD100B3E1BF /* Debug */,
+				20FAEF6926754FD100B3E1BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		20FAEF5C26754FCF00B3E1BF /* Shopper_Logger.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				20FAEF5D26754FCF00B3E1BF /* Shopper_Logger.xcdatamodel */,
+			);
+			currentVersion = 20FAEF5D26754FCF00B3E1BF /* Shopper_Logger.xcdatamodel */;
+			path = Shopper_Logger.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 20FAEF4826754FCF00B3E1BF /* Project object */;
+}
