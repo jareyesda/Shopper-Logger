@@ -37,7 +37,8 @@ class OrderLogViewController: UIViewController, UIImagePickerControllerDelegate 
         let minute = calendar.component(.minute, from: date)
         let seconds = calendar.component(.second, from: date)
         
-        dateLabel.text = "\(month)/\(day)/\(year) - \(hour):\(minute):\(seconds)"
+        
+        dateLabel.text = "\(month)/\(day)/\(year) - \(formatHMS(formatHour(hour))):\(formatHMS(minute)):\(formatHMS(seconds))"
         orderModel.dateTime = dateLabel.text
         
         photoCollectionView.dataSource = self
@@ -46,7 +47,26 @@ class OrderLogViewController: UIViewController, UIImagePickerControllerDelegate 
         orderNotes.delegate = self
         
         setupToHideKeyboardOnTapOnView()
-
+        
+    }
+    
+    // Format time functions
+    func formatHMS(_ number: Int) -> String {
+        var retVal = ""
+        if (number < 10) {
+            retVal = "0\(number)"
+        } else {
+            retVal = "\(number)"
+        }
+        return retVal
+    }
+    
+    func formatHour(_ hour: Int) -> Int {
+        var retVal = hour
+        if hour > 12 {
+            retVal -= 12
+        }
+        return retVal
     }
     
     //MARK: - Add Photos Button functionality
@@ -79,14 +99,15 @@ class OrderLogViewController: UIViewController, UIImagePickerControllerDelegate 
     
     //MARK: - Log Order Button Functionality
     @IBAction func logOrderButtonPressed(_ sender: UIButton) {
-
-        saveOrder(dateTime: dateLabel.text!, orderNotes: (orderNotes.text ?? "No notes.."), images: coreDataObjectFromImages(images: images))
-    
+        
+        DispatchQueue.main.async {
+            self.saveOrder(dateTime: self.dateLabel.text!, orderNotes: (self.orderNotes.text ?? "No notes.."), images: self.coreDataObjectFromImages(images: self.images))
+        }
+        
         self.performSegue(withIdentifier: "unwindToOrderLog", sender: self)
         
-        let notificationName = NSNotification.Name("reloadLog")
-        NotificationCenter.default.post(name: notificationName, object: nil)
-        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
+
     }
     
     // Turning image array to data type for storage in CoreData

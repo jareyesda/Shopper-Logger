@@ -26,14 +26,16 @@ class ViewController: UIViewController {
         // Loading Orders
         loadItems()
 
-        let notificationName = NSNotification.Name("reloadLog")
-        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadTableview), name: notificationName, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
+
 
     }
-    
-    @objc func reloadTableview() {
+  
+    @objc func loadList(notification: NSNotification) {
+        //load data here
         self.orderLog.reloadData()
     }
+    
     
     //MARK: - Loading items from Core Data function
     func loadItems() {
@@ -68,6 +70,7 @@ class ViewController: UIViewController {
     //MARK: - Unwind Segue from order logging form
     @IBAction func unwindToOrderLog(segue: UIStoryboardSegue) {
         //Nothing goes here
+        self.orderLog.reloadData()
     }
     
     func imagesFromCoreData(object: Data?) -> [UIImage]? {
