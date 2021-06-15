@@ -10,26 +10,34 @@ import CoreData
 
 class OrderLogViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
     
+    //MARK: - IBOutlets
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet var orderNotes: UITextView!
     @IBOutlet var takePhotoButton: UIButton!
     @IBOutlet var photoCollectionView: UICollectionView!
     @IBOutlet var logOrderButton: UIButton!
     
+    //MARK: - ViewController Variables
+    
+    // Date vars
     let date = Date()
     let calendar = Calendar.current
     
+    // Order loggig vars
     var orderModel = OrderModel()
     var images = [UIImage]()
-    
     var orders: [NSManagedObject] = []
-                
+    
+    let orderLogger = OrderLoggerManager()
+                    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // UI Setup
         takePhotoButton.layer.cornerRadius = 15
         logOrderButton.layer.cornerRadius = 15
         
+        // Time stamping order
         let month = calendar.component(.month, from: date)
         let day = calendar.component(.day, from: date)
         let year = calendar.component(.year, from: date)
@@ -37,20 +45,20 @@ class OrderLogViewController: UIViewController, UIImagePickerControllerDelegate 
         let minute = calendar.component(.minute, from: date)
         let seconds = calendar.component(.second, from: date)
         
-        
         dateLabel.text = "\(month)/\(day)/\(year) - \(formatHMS(formatHour(hour))):\(formatHMS(minute)):\(formatHMS(seconds))"
         orderModel.dateTime = dateLabel.text
         
+        // CollectionView Delegate/Data Source
         photoCollectionView.dataSource = self
         photoCollectionView.delegate = self
         
+        // TextView Delegate & Supporting func
         orderNotes.delegate = self
-        
         setupToHideKeyboardOnTapOnView()
         
     }
     
-    // Format time functions
+    //MARK: - Time formatting functions
     func formatHMS(_ number: Int) -> String {
         var retVal = ""
         if (number < 10) {
@@ -101,13 +109,11 @@ class OrderLogViewController: UIViewController, UIImagePickerControllerDelegate 
     @IBAction func logOrderButtonPressed(_ sender: UIButton) {
         
         DispatchQueue.main.async {
-            self.saveOrder(dateTime: self.dateLabel.text!, orderNotes: (self.orderNotes.text ?? "No notes.."), images: self.coreDataObjectFromImages(images: self.images))
+            self.orderLogger.saveOrder(dateTime: self.dateLabel.text!, orderNotes: self.orderNotes.text!, images: self.coreDataObjectFromImages(images: self.images))
         }
         
         self.performSegue(withIdentifier: "unwindToOrderLog", sender: self)
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "load"), object: nil)
-
     }
     
     // Turning image array to data type for storage in CoreData
@@ -121,42 +127,6 @@ class OrderLogViewController: UIViewController, UIImagePickerControllerDelegate 
         }
         
         return try? NSKeyedArchiver.archivedData(withRootObject: dataArray, requiringSecureCoding: true)
-    }
-    
-    //MARK: - Saving data from form to CoreData
-    
-    func saveOrder(dateTime: String, orderNotes: String, images: Data?) {
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-            return
-          }
-
-          // 1
-          let managedContext =
-            appDelegate.persistentContainer.viewContext
-
-          // 2
-          let entity =
-            NSEntityDescription.entity(forEntityName: "Order",
-                                       in: managedContext)!
-
-          let order = NSManagedObject(entity: entity,
-                                       insertInto: managedContext)
-
-          // 3
-        order.setValue(dateTime, forKeyPath: "dateTime")
-        order.setValue(orderNotes, forKey: "notes")
-        if let safeImages = images {
-            order.setValue(safeImages, forKey: "photos")
-        }
-
-          // 4
-          do {
-            try managedContext.save()
-            orders.append(order)
-          } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-          }
     }
     
     //MARK: - Function that dismisses keyboard when outside is tapped

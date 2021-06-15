@@ -11,6 +11,9 @@ import CoreData
 class ViewController: UIViewController {
     
     var orders: [NSManagedObject] = []
+    var filteredData: [String]!
+    
+    var orderLogger = OrderLoggerManager()
         
     @IBOutlet var orderLog: UITableView!
     
@@ -24,68 +27,28 @@ class ViewController: UIViewController {
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
         // Loading Orders
-        loadItems()
-
-        NotificationCenter.default.addObserver(self, selector: #selector(loadList), name: NSNotification.Name(rawValue: "load"), object: nil)
-
-
-    }
-  
-    @objc func loadList(notification: NSNotification) {
-        //load data here
-        self.orderLog.reloadData()
-    }
-    
-    
-    //MARK: - Loading items from Core Data function
-    func loadItems() {
+        orders = orderLogger.loadItems()
         
-    //1
-      guard let appDelegate =
-        UIApplication.shared.delegate as? AppDelegate else {
-          return
-      }
-      
-      let managedContext =
-        appDelegate.persistentContainer.viewContext
-      
-      //2
-      let fetchRequest =
-        NSFetchRequest<NSManagedObject>(entityName: "Order")
+//        searchTextField.delegate = self
+//        searchTextField.showsCancelButton = true
         
-        // This is to sort the orders -> Most recent first
-        let sort = NSSortDescriptor(key: "dateTime", ascending: false)
-        fetchRequest.sortDescriptors = [sort]
-    
-    
-      //3
-      do {
-        orders = try managedContext.fetch(fetchRequest)
-      } catch let error as NSError {
-        print("Could not fetch. \(error), \(error.userInfo)")
-      }
-            
+        self.orderLog.keyboardDismissMode = .onDrag
+        
+//        DataManager.shared.firstVC = self
+        orderLog.reloadData()
+
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        orders = orderLogger.loadItems()
+       self.orderLog.reloadData()
+        
+   }
     
     //MARK: - Unwind Segue from order logging form
     @IBAction func unwindToOrderLog(segue: UIStoryboardSegue) {
         //Nothing goes here
-        self.orderLog.reloadData()
-    }
-    
-    func imagesFromCoreData(object: Data?) -> [UIImage]? {
-        var retVal = [UIImage]()
-
-        guard let object = object else { return nil }
-        if let dataArray = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSArray.self, from: object) {
-            for data in dataArray {
-                if let data = data as? Data, let image = UIImage(data: data) {
-                    retVal.append(image)
-                }
-            }
-        }
-        
-        return retVal
     }
 }
 
@@ -106,6 +69,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "viewOrder", sender: self)
+        tableView.deselectRow(at: indexPath, animated: true)
 
     }
     
@@ -125,5 +89,47 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
     
     }
+    
+    //MARK: - Function that transform CoreData Binary Data to a UIImage
+    func imagesFromCoreData(object: Data?) -> [UIImage]? {
+        var retVal = [UIImage]()
+
+        guard let object = object else { return nil }
+        if let dataArray = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSArray.self, from: object) {
+            for data in dataArray {
+                if let data = data as? Data, let image = UIImage(data: data) {
+                    retVal.append(image)
+                }
+            }
+        }
+        
+        return retVal
+    }
 
 }
+
+
+//extension ViewController: UISearchBarDelegate, UISearchDisplayDelegate {
+//
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        if !searchText.isEmpty {
+//            var predicate: NSPredicate = NSPredicate()
+//            predicate = NSPredicate(format: "dateTime contains[c] '\(searchText)'")
+//            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+//            let managedObjectContext = appDelegate.persistentContainer.viewContext
+//            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Order")
+//            fetchRequest.predicate = predicate
+//            do {
+//                orders = try managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
+//            } catch let error as NSError {
+//                print("Could not fetch. \(error)")
+//            }
+//        }
+//        orderLog.reloadData()
+//    }
+//
+//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+//        isEditing = false
+//        orderLog.reloadData()
+//    }
+//}
