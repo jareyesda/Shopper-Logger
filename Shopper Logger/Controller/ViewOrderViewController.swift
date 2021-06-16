@@ -74,6 +74,7 @@ extension ViewOrderViewController: UICollectionViewDelegate, UICollectionViewDat
     
 }
 
+//MARK: - Function to rotate UIImages 90 degrees
 extension UIImage {
     func rotate(radians: Float) -> UIImage? {
         var newSize = CGRect(origin: CGPoint.zero, size: self.size).applying(CGAffineTransform(rotationAngle: CGFloat(radians))).size

@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import SwipeCellKit
 
 class ViewController: UIViewController {
     
@@ -33,17 +34,15 @@ class ViewController: UIViewController {
 //        searchTextField.showsCancelButton = true
         
         self.orderLog.keyboardDismissMode = .onDrag
-        
-//        DataManager.shared.firstVC = self
+                
         orderLog.reloadData()
 
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-        orders = orderLogger.loadItems()
-       self.orderLog.reloadData()
-        
+        DispatchQueue.main.async {
+            self.orders = self.orderLogger.loadItems()
+        }
    }
     
     //MARK: - Unwind Segue from order logging form
@@ -54,18 +53,27 @@ class ViewController: UIViewController {
 
 //MARK: - TableView Delegate and DataSource Methods
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return orders.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell") as! SwipeTableViewCell
+        cell.delegate = self
+        
         let order = orders[indexPath.row]
-        cell?.textLabel?.text = order.value(forKey: "dateTime") as? String
-        return cell!
+        cell.textLabel?.text = order.value(forKey: "dateTime") as? String
+        return cell
         
     }
+    
+//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! SwipeTableViewCell
+//        cell.delegate = self
+//        return cell
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "viewOrder", sender: self)
@@ -106,6 +114,25 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         return retVal
     }
 
+}
+
+extension ViewController: SwipeTableViewCellDelegate {
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        
+        guard orientation == .right else { return nil }
+
+            let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
+                print("Item deleted!")
+            }
+
+            // customize the action appearance
+            deleteAction.image = UIImage(named: "trash-circle")
+
+            return [deleteAction]
+        
+    }
+    
 }
 
 

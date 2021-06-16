@@ -20,10 +20,13 @@
 		20FAEF722675543E00B3E1BF /* PhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAEF712675543E00B3E1BF /* PhotoCollectionViewCell.swift */; };
 		20FAEF74267696FC00B3E1BF /* ViewOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAEF73267696FC00B3E1BF /* ViewOrderViewController.swift */; };
 		20FAEF762676A79D00B3E1BF /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAEF752676A79D00B3E1BF /* PhotoViewController.swift */; };
+		F2755A9E6EF97C77F38EAC32 /* Pods_Shopper_Logger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 640E98DD50F2AA48CA6A67DF /* Pods_Shopper_Logger.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F378BC4FFEB07AB2A04AD96 /* Pods-Shopper Logger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopper Logger.debug.xcconfig"; path = "Target Support Files/Pods-Shopper Logger/Pods-Shopper Logger.debug.xcconfig"; sourceTree = "<group>"; };
 		20A3972426794C7B00500F65 /* OrderLoggerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OrderLoggerManager.swift; path = "Shopper Logger/Controller/OrderLoggerManager.swift"; sourceTree = SOURCE_ROOT; };
+		20A3972926797A5300500F65 /* Finjinon.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Finjinon.xcframework; path = Carthage/Build/Finjinon.xcframework; sourceTree = "<group>"; };
 		20FAEF5026754FCF00B3E1BF /* Shopper Logger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shopper Logger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		20FAEF5326754FCF00B3E1BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20FAEF5526754FCF00B3E1BF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +41,8 @@
 		20FAEF712675543E00B3E1BF /* PhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoCollectionViewCell.swift; path = "Shopper Logger/View/PhotoCollectionViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		20FAEF73267696FC00B3E1BF /* ViewOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOrderViewController.swift; sourceTree = "<group>"; };
 		20FAEF752676A79D00B3E1BF /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoViewController.swift; path = "Shopper Logger/View/PhotoViewController.swift"; sourceTree = SOURCE_ROOT; };
+		640E98DD50F2AA48CA6A67DF /* Pods_Shopper_Logger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopper_Logger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB52D1C3FC30509E6ADB3602 /* Pods-Shopper Logger.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopper Logger.release.xcconfig"; path = "Target Support Files/Pods-Shopper Logger/Pods-Shopper Logger.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,17 +50,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2755A9E6EF97C77F38EAC32 /* Pods_Shopper_Logger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20A3972826797A5300500F65 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				20A3972926797A5300500F65 /* Finjinon.xcframework */,
+				640E98DD50F2AA48CA6A67DF /* Pods_Shopper_Logger.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		20FAEF4726754FCF00B3E1BF = {
 			isa = PBXGroup;
 			children = (
 				20FAEF5226754FCF00B3E1BF /* Shopper Logger */,
 				20FAEF5126754FCF00B3E1BF /* Products */,
+				20A3972826797A5300500F65 /* Frameworks */,
+				22C1010F428019DEAF8AD204 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,6 +129,16 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		22C1010F428019DEAF8AD204 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0F378BC4FFEB07AB2A04AD96 /* Pods-Shopper Logger.debug.xcconfig */,
+				FB52D1C3FC30509E6ADB3602 /* Pods-Shopper Logger.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -119,9 +146,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 20FAEF6726754FD100B3E1BF /* Build configuration list for PBXNativeTarget "Shopper Logger" */;
 			buildPhases = (
+				4A18CA7D5D830B3DF82CEA3B /* [CP] Check Pods Manifest.lock */,
 				20FAEF4C26754FCF00B3E1BF /* Sources */,
 				20FAEF4D26754FCF00B3E1BF /* Frameworks */,
 				20FAEF4E26754FCF00B3E1BF /* Resources */,
+				3148EA81D1AA943A005E0D67 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -176,6 +205,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3148EA81D1AA943A005E0D67 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Shopper Logger/Pods-Shopper Logger-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Shopper Logger/Pods-Shopper Logger-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Shopper Logger/Pods-Shopper Logger-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4A18CA7D5D830B3DF82CEA3B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Shopper Logger-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		20FAEF4C26754FCF00B3E1BF /* Sources */ = {
@@ -335,6 +406,7 @@
 		};
 		20FAEF6826754FD100B3E1BF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F378BC4FFEB07AB2A04AD96 /* Pods-Shopper Logger.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -354,6 +426,7 @@
 		};
 		20FAEF6926754FD100B3E1BF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FB52D1C3FC30509E6ADB3602 /* Pods-Shopper Logger.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

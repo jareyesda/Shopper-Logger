@@ -17,7 +17,6 @@ class PhotoViewController: UIViewController {
         super.viewDidLoad()
 
         photo.image = image!
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Use", style: .plain, target: self, action: #selector(share(sender:)))
 
     }
@@ -35,7 +34,6 @@ class PhotoViewController: UIViewController {
 
         //Excluded Activities
         activityVC.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.addToReadingList]
-        //
 
         activityVC.popoverPresentationController?.sourceView = sender
         self.present(activityVC, animated: true, completion: nil)

@@ -55,7 +55,7 @@ class OrderLogViewController: UIViewController, UIImagePickerControllerDelegate 
         // TextView Delegate & Supporting func
         orderNotes.delegate = self
         setupToHideKeyboardOnTapOnView()
-        
+                
     }
     
     //MARK: - Time formatting functions
