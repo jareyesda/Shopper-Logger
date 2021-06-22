@@ -12,7 +12,8 @@ import SwipeCellKit
 class ViewController: UIViewController {
     
     var orders: [NSManagedObject] = []
-    var filteredData: [String]!
+//    var filteredData: [String]!
+    var orderArray: [OrderModel] = []
     
     var orderLogger = OrderLoggerManager()
         
@@ -29,9 +30,9 @@ class ViewController: UIViewController {
         
         // Loading Orders
         orders = orderLogger.loadItems()
+//        orderArray = orderLogger.coreToOrderArray(orders)
         
 //        searchTextField.delegate = self
-//        searchTextField.showsCancelButton = true
         
         self.orderLog.keyboardDismissMode = .onDrag
                 
@@ -40,8 +41,10 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        print("Order log appeared")
         DispatchQueue.main.async {
             self.orders = self.orderLogger.loadItems()
+            self.orderLog.reloadData()
         }
    }
     
@@ -65,15 +68,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         let order = orders[indexPath.row]
         cell.textLabel?.text = order.value(forKey: "dateTime") as? String
+//        cell.textLabel?.text = orderArray[indexPath.row].dateTime
         return cell
         
     }
-    
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! SwipeTableViewCell
-//        cell.delegate = self
-//        return cell
-//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "viewOrder", sender: self)
@@ -98,7 +96,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     }
     
-    //MARK: - Function that transform CoreData Binary Data to a UIImage
+    //MARK: - Function that transform CoreData Binary Data to a UIImage --> WILL BE DELETED
     func imagesFromCoreData(object: Data?) -> [UIImage]? {
         var retVal = [UIImage]()
 
@@ -116,6 +114,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
 }
 
+//MARK: - SwipeTableViewCell Delegate methods
 extension ViewController: SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
@@ -124,6 +123,10 @@ extension ViewController: SwipeTableViewCellDelegate {
 
             let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
                 print("Item deleted!")
+                
+                self.orderLogger.deleteOrder(self.orders[indexPath.row])
+                self.orderLog.reloadData()
+                
             }
 
             // customize the action appearance

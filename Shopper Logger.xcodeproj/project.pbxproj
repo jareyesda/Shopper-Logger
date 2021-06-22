@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -93,7 +93,6 @@
 				20FAEF6D2675511200B3E1BF /* View */,
 				20FAEF6C2675510A00B3E1BF /* Controller */,
 				20FAEF5F26754FD100B3E1BF /* Assets.xcassets */,
-				20FAEF6126754FD100B3E1BF /* LaunchScreen.storyboard */,
 				20FAEF6426754FD100B3E1BF /* Info.plist */,
 				20FAEF5C26754FCF00B3E1BF /* Shopper_Logger.xcdatamodeld */,
 			);
@@ -114,6 +113,7 @@
 		20FAEF6D2675511200B3E1BF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				20FAEF6126754FD100B3E1BF /* LaunchScreen.storyboard */,
 				20FAEF5926754FCF00B3E1BF /* Main.storyboard */,
 			);
 			path = View;
@@ -135,7 +135,6 @@
 				0F378BC4FFEB07AB2A04AD96 /* Pods-Shopper Logger.debug.xcconfig */,
 				FB52D1C3FC30509E6ADB3602 /* Pods-Shopper Logger.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

@@ -80,4 +80,60 @@ struct OrderLoggerManager {
             
     }
     
+//    func coreToOrderArray(_ coreOrderArray: [NSManagedObject]) -> [OrderModel] {
+//        var orders = [OrderModel]()
+//        let defaultImage: [UIImage?] = [UIImage(named: "trash-circle")]
+//
+//        for coreOrder in coreOrderArray {
+//            let orderDateTime = coreOrder.value(forKey: "dateTime") as? String
+//            let orderNotes = coreOrder.value(forKey: "notes") as? String
+//            let orderPhotos = (imagesFromCoreData(object: coreOrder.value(forKey: "photos") as? Data))
+//
+//            orders.append(OrderModel(dateTime: orderDateTime, notes: orderNotes, photos: orderPhotos ?? defaultImage))
+//
+//        }
+//
+//        return orders
+//    }
+    
+    func deleteOrder(_ order: NSManagedObject) {
+        
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+            return
+          }
+
+          // 1) Declaring context
+          let managedContext =
+            appDelegate.persistentContainer.viewContext
+
+          // 2) Defining entity
+          let entity =
+            NSEntityDescription.entity(forEntityName: "Order",
+                                       in: managedContext)!
+
+          let order = NSManagedObject(entity: entity,
+                                       insertInto: managedContext)
+
+
+          // 4) Deleting the data
+            managedContext.delete(order)
+        
+    }
+    
+    func imagesFromCoreData(object: Data?) -> [UIImage]? {
+        var retVal = [UIImage]()
+
+        guard let object = object else { return nil }
+        if let dataArray = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSArray.self, from: object) {
+            for data in dataArray {
+                if let data = data as? Data, let image = UIImage(data: data) {
+                    retVal.append(image)
+                }
+            }
+        }
+        
+        return retVal
+    }
+    
 }
