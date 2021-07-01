@@ -12,10 +12,11 @@ import SwipeCellKit
 class ViewController: UIViewController {
     
     var orders: [NSManagedObject] = []
-//    var filteredData: [String]!
     var orderArray: [OrderModel] = []
     
     var orderLogger = OrderLoggerManager()
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         
     @IBOutlet var orderLog: UITableView!
     
@@ -28,11 +29,11 @@ class ViewController: UIViewController {
         // Printing filepath for checking data persistance (need SQLite file)
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
+        print(self.orderArray)
+        
         // Loading Orders
         orders = orderLogger.loadItems()
         orderArray = orderLogger.coreToOrderArray(orders)
-        
-//        searchTextField.delegate = self
         
         self.orderLog.keyboardDismissMode = .onDrag
                 
@@ -68,7 +69,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         let order = orders[indexPath.row]
         cell.textLabel?.text = order.value(forKey: "dateTime") as? String
-//        cell.textLabel?.text = orderArray[indexPath.row].dateTime
         return cell
         
     }
@@ -89,27 +89,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             destination.dateTime = order.value(forKey: "dateTime") as? String
             destination.notes = order.value(forKey: "notes") as? String
             if let images = order.value(forKey: "photos") as? Data {
-                destination.images = self.imagesFromCoreData(object: images)!
+                destination.images = self.orderLogger.imagesFromCoreData(object: images)!
             }
             
         }
     
-    }
-    
-    //MARK: - Function that transform CoreData Binary Data to a UIImage --> WILL BE DELETED
-    func imagesFromCoreData(object: Data?) -> [UIImage]? {
-        var retVal = [UIImage]()
-
-        guard let object = object else { return nil }
-        if let dataArray = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSArray.self, from: object) {
-            for data in dataArray {
-                if let data = data as? Data, let image = UIImage(data: data) {
-                    retVal.append(image)
-                }
-            }
-        }
-        
-        return retVal
     }
 
 }
@@ -123,11 +107,25 @@ extension ViewController: SwipeTableViewCellDelegate {
 
             let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
                 
+                self.context.delete(self.orders[indexPath.row])
                 self.orders.remove(at: indexPath.row)
-                self.orderLogger.deleteOrder(orderToDelete: self.orders[indexPath.row])
-                self.orderLog.reloadData()
+                                
+                self.orderArray = [OrderModel]()
+                
+                for order in self.orderArray {
+                    let orderToSave = Order(context: self.context)
+                    orderToSave.dateTime = order.dateTime
+                    orderToSave.notes = order.notes
+                    orderToSave.photos = self.orderLogger.coreDataObjectFromImages(images: order.photos)
+                }
+                
+                self.orderLogger.saveOrders(tableViewToReload: self.orderLog)
+                self.orderArray = self.orderLogger.coreToOrderArray(self.orders)
                 
                 print("Item deleted!")
+                print(self.orderArray.count)
+                
+                self.orderLog.reloadData()
                 
             }
 
@@ -139,29 +137,3 @@ extension ViewController: SwipeTableViewCellDelegate {
     }
     
 }
-
-
-//extension ViewController: UISearchBarDelegate, UISearchDisplayDelegate {
-//
-//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        if !searchText.isEmpty {
-//            var predicate: NSPredicate = NSPredicate()
-//            predicate = NSPredicate(format: "dateTime contains[c] '\(searchText)'")
-//            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-//            let managedObjectContext = appDelegate.persistentContainer.viewContext
-//            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName:"Order")
-//            fetchRequest.predicate = predicate
-//            do {
-//                orders = try managedObjectContext.fetch(fetchRequest) as! [NSManagedObject]
-//            } catch let error as NSError {
-//                print("Could not fetch. \(error)")
-//            }
-//        }
-//        orderLog.reloadData()
-//    }
-//
-//    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        isEditing = false
-//        orderLog.reloadData()
-//    }
-//}

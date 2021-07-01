@@ -46,7 +46,19 @@ struct OrderLoggerManager {
             
     }
     
-    //MARK: - <#Section Heading#>
+    //MARK: - Save Function for ALL orders after deleting one object
+    func saveOrders(tableViewToReload: UITableView) {
+        
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context: \(error)")
+        }
+        
+        tableViewToReload.reloadData()
+    }
     
     //MARK: - Load Orders Function
     func loadItems() -> [NSManagedObject] {
@@ -82,6 +94,7 @@ struct OrderLoggerManager {
             
     }
     
+    //MARK: - Convert NSManagedObject to a OrderModel array
     func coreToOrderArray(_ coreOrderArray: [NSManagedObject]) -> [OrderModel] {
         
         var orders = [OrderModel]()
@@ -99,36 +112,7 @@ struct OrderLoggerManager {
         return orders
     }
     
-    //MARK: - Delete Order Function
-    func deleteOrder(orderToDelete: NSManagedObject) {
-        
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-            return
-          }
-
-          // 1) Declaring context
-          let managedContext =
-            appDelegate.persistentContainer.viewContext
-
-          // 2) Defining entity
-          let entity =
-            NSEntityDescription.entity(forEntityName: "Order",
-                                       in: managedContext)!
-
-          let order = NSManagedObject(entity: entity,
-                                       insertInto: managedContext)
-
-
-          // 4) Deleting the data
-            managedContext.delete(order)
-        do {
-            try managedContext.save()
-        } catch {
-            print(error)
-        }
-    }
-    
+    //MARK: - Binary Data -> Image converter
     func imagesFromCoreData(object: Data?) -> [UIImage]? {
         var retVal = [UIImage]()
 
@@ -144,6 +128,7 @@ struct OrderLoggerManager {
         return retVal
     }
     
+    //MARK: - Image -> Binary data converter
     func coreDataObjectFromImages(images: [UIImage]) -> Data? {
         let dataArray = NSMutableArray()
         
