@@ -80,7 +80,8 @@ class OrderLogViewController: UIViewController, UIImagePickerControllerDelegate 
         
         picker.dismiss(animated: true)
         
-        images.insert(image, at: 0)
+        images.append(image)
+        print(images)
         self.orderModel.photos.append(image)
         print(orderModel.photos)
         photoCollectionView.reloadData()
@@ -91,24 +92,11 @@ class OrderLogViewController: UIViewController, UIImagePickerControllerDelegate 
     @IBAction func logOrderButtonPressed(_ sender: UIButton) {
         
         DispatchQueue.main.async {
-            self.orderLogger.saveOrder(dateTime: self.dateLabel.text!, orderNotes: self.orderNotes.text!, images: self.coreDataObjectFromImages(images: self.images))
+            self.orderLogger.saveOrder(dateTime: self.dateLabel.text!, orderNotes: self.orderNotes.text!, images: self.orderLogger.coreDataObjectFromImages(images: self.images))
         }
         
         self.performSegue(withIdentifier: "unwindToOrderLog", sender: self)
         
-    }
-    
-    // Turning image array to data type for storage in CoreData
-    func coreDataObjectFromImages(images: [UIImage]) -> Data? {
-        let dataArray = NSMutableArray()
-        
-        for img in images {
-            if let data = img.pngData() {
-                dataArray.add(data)
-            }
-        }
-        
-        return try? NSKeyedArchiver.archivedData(withRootObject: dataArray, requiringSecureCoding: true)
     }
     
     //MARK: - Function that dismisses keyboard when outside is tapped
@@ -130,21 +118,30 @@ class OrderLogViewController: UIViewController, UIImagePickerControllerDelegate 
 }
 
 //MARK: - UICollectionView Delegate Methods
-extension OrderLogViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension OrderLogViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.orderModel.photos.count
+        return self.images.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = photoCollectionView.dequeueReusableCell(withReuseIdentifier: "ImageView", for: indexPath) as? PhotoCollectionViewCell
+//        let cell = photoCollectionView.dequeueReusableCell(withReuseIdentifier: "ImageView", for: indexPath) as? PhotoCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageView", for: indexPath) as? PhotoCollectionViewCell
         
-        let image = self.orderModel.photos[indexPath.row]
-        cell?.photo.image = image
+        cell?.photo.image = images[indexPath.row]
+        
             
         return cell!
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 20
     }
     
 }

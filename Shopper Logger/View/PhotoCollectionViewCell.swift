@@ -11,9 +11,4 @@ class PhotoCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var photo: UIImageView!
     
-    func configure(with image: UIImage) {
-        photo.image = image
-        photo.layer.cornerRadius = 10
-    }
-    
 }
