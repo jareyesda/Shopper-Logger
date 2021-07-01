@@ -29,6 +29,7 @@ class OrderLogViewController: UIViewController, UIImagePickerControllerDelegate 
     var orders: [NSManagedObject] = []
     
     let orderLogger = OrderLoggerManager()
+    let timerManager = TimerManager()
                     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +46,7 @@ class OrderLogViewController: UIViewController, UIImagePickerControllerDelegate 
         let minute = calendar.component(.minute, from: date)
         let seconds = calendar.component(.second, from: date)
         
-        dateLabel.text = "\(month)/\(day)/\(year) - \(formatHMS(formatHour(hour))):\(formatHMS(minute)):\(formatHMS(seconds))"
+        dateLabel.text = "\(month)/\(day)/\(year) - \(timerManager.formatHMS(timerManager.formatHour(hour))):\(timerManager.formatHMS(minute)):\(timerManager.formatHMS(seconds))"
         orderModel.dateTime = dateLabel.text
         
         // CollectionView Delegate/Data Source
@@ -56,25 +57,6 @@ class OrderLogViewController: UIViewController, UIImagePickerControllerDelegate 
         orderNotes.delegate = self
         setupToHideKeyboardOnTapOnView()
                 
-    }
-    
-    //MARK: - Time formatting functions
-    func formatHMS(_ number: Int) -> String {
-        var retVal = ""
-        if (number < 10) {
-            retVal = "0\(number)"
-        } else {
-            retVal = "\(number)"
-        }
-        return retVal
-    }
-    
-    func formatHour(_ hour: Int) -> Int {
-        var retVal = hour
-        if hour > 12 {
-            retVal -= 12
-        }
-        return retVal
     }
     
     //MARK: - Add Photos Button functionality

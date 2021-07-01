@@ -46,6 +46,8 @@ struct OrderLoggerManager {
             
     }
     
+    //MARK: - <#Section Heading#>
+    
     //MARK: - Load Orders Function
     func loadItems() -> [NSManagedObject] {
         
@@ -80,23 +82,25 @@ struct OrderLoggerManager {
             
     }
     
-//    func coreToOrderArray(_ coreOrderArray: [NSManagedObject]) -> [OrderModel] {
-//        var orders = [OrderModel]()
-//        let defaultImage: [UIImage?] = [UIImage(named: "trash-circle")]
-//
-//        for coreOrder in coreOrderArray {
-//            let orderDateTime = coreOrder.value(forKey: "dateTime") as? String
-//            let orderNotes = coreOrder.value(forKey: "notes") as? String
-//            let orderPhotos = (imagesFromCoreData(object: coreOrder.value(forKey: "photos") as? Data))
-//
-//            orders.append(OrderModel(dateTime: orderDateTime, notes: orderNotes, photos: orderPhotos ?? defaultImage))
-//
-//        }
-//
-//        return orders
-//    }
+    func coreToOrderArray(_ coreOrderArray: [NSManagedObject]) -> [OrderModel] {
+        
+        var orders = [OrderModel]()
+//        let defaultImage: [UIImage]
+
+        for coreOrder in coreOrderArray {
+            let orderDateTime = coreOrder.value(forKey: "dateTime") as? String
+            let orderNotes = coreOrder.value(forKey: "notes") as? String
+            let orderPhotos = (imagesFromCoreData(object: coreOrder.value(forKey: "photos") as? Data))!
+
+            orders.append(OrderModel(dateTime: orderDateTime, notes: orderNotes, photos: orderPhotos))
+
+        }
+
+        return orders
+    }
     
-    func deleteOrder(_ order: NSManagedObject) {
+    //MARK: - Delete Order Function
+    func deleteOrder(orderToDelete: NSManagedObject) {
         
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
@@ -118,7 +122,11 @@ struct OrderLoggerManager {
 
           // 4) Deleting the data
             managedContext.delete(order)
-        
+        do {
+            try managedContext.save()
+        } catch {
+            print(error)
+        }
     }
     
     func imagesFromCoreData(object: Data?) -> [UIImage]? {
@@ -134,6 +142,18 @@ struct OrderLoggerManager {
         }
         
         return retVal
+    }
+    
+    func coreDataObjectFromImages(images: [UIImage]) -> Data? {
+        let dataArray = NSMutableArray()
+        
+        for img in images {
+            if let data = img.pngData() {
+                dataArray.add(data)
+            }
+        }
+        
+        return try? NSKeyedArchiver.archivedData(withRootObject: dataArray, requiringSecureCoding: true)
     }
     
 }

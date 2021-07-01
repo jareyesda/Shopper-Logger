@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2040AD85268D4D8000891C87 /* TimerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2040AD84268D4D8000891C87 /* TimerManager.swift */; };
 		20A3972526794C7B00500F65 /* OrderLoggerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A3972426794C7B00500F65 /* OrderLoggerManager.swift */; };
 		20FAEF5426754FCF00B3E1BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAEF5326754FCF00B3E1BF /* AppDelegate.swift */; };
 		20FAEF5626754FCF00B3E1BF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAEF5526754FCF00B3E1BF /* SceneDelegate.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		0F378BC4FFEB07AB2A04AD96 /* Pods-Shopper Logger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopper Logger.debug.xcconfig"; path = "Target Support Files/Pods-Shopper Logger/Pods-Shopper Logger.debug.xcconfig"; sourceTree = "<group>"; };
+		2040AD84268D4D8000891C87 /* TimerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TimerManager.swift; path = "Shopper Logger/Controller/TimerManager.swift"; sourceTree = SOURCE_ROOT; };
 		20A3972426794C7B00500F65 /* OrderLoggerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OrderLoggerManager.swift; path = "Shopper Logger/Controller/OrderLoggerManager.swift"; sourceTree = SOURCE_ROOT; };
 		20A3972926797A5300500F65 /* Finjinon.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = Finjinon.xcframework; path = Carthage/Build/Finjinon.xcframework; sourceTree = "<group>"; };
 		20FAEF5026754FCF00B3E1BF /* Shopper Logger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shopper Logger.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +124,7 @@
 		20FAEF6E2675511B00B3E1BF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2040AD84268D4D8000891C87 /* TimerManager.swift */,
 				20A3972426794C7B00500F65 /* OrderLoggerManager.swift */,
 				20FAEF712675543E00B3E1BF /* PhotoCollectionViewCell.swift */,
 				20FAEF6F2675514200B3E1BF /* OrderModel.swift */,
@@ -254,6 +257,7 @@
 			files = (
 				20FAEF702675514200B3E1BF /* OrderModel.swift in Sources */,
 				20FAEF5826754FCF00B3E1BF /* ViewController.swift in Sources */,
+				2040AD85268D4D8000891C87 /* TimerManager.swift in Sources */,
 				20FAEF5426754FCF00B3E1BF /* AppDelegate.swift in Sources */,
 				20FAEF5626754FCF00B3E1BF /* SceneDelegate.swift in Sources */,
 				20FAEF722675543E00B3E1BF /* PhotoCollectionViewCell.swift in Sources */,

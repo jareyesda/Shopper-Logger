@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         
         // Loading Orders
         orders = orderLogger.loadItems()
-//        orderArray = orderLogger.coreToOrderArray(orders)
+        orderArray = orderLogger.coreToOrderArray(orders)
         
 //        searchTextField.delegate = self
         
@@ -122,10 +122,12 @@ extension ViewController: SwipeTableViewCellDelegate {
         guard orientation == .right else { return nil }
 
             let deleteAction = SwipeAction(style: .destructive, title: "Delete") { action, indexPath in
-                print("Item deleted!")
                 
-                self.orderLogger.deleteOrder(self.orders[indexPath.row])
+                self.orders.remove(at: indexPath.row)
+                self.orderLogger.deleteOrder(orderToDelete: self.orders[indexPath.row])
                 self.orderLog.reloadData()
+                
+                print("Item deleted!")
                 
             }
 
