@@ -26,6 +26,7 @@ class OrderLogViewController: UIViewController, UIImagePickerControllerDelegate 
     // Order loggig vars
     var orderModel = OrderModel()
     var images = [UIImage]()
+    var imagesURLs = [String]()
     var orders: [NSManagedObject] = []
     
     let orderLogger = OrderLoggerManager()
@@ -91,11 +92,23 @@ class OrderLogViewController: UIViewController, UIImagePickerControllerDelegate 
     //MARK: - Log Order Button Functionality
     @IBAction func logOrderButtonPressed(_ sender: UIButton) {
         
+//        if images.count > 0 {
+//            for image in images {
+//                self.imagesURLs.append(self.orderLogger.saveImages(image: image))
+//            }
+//        }
+//
+//        let imagesURLsCombined = self.imagesURLs.joined(separator: ", ")
+        
+//        self.orderLogger.saveOrder(dateTime: self.dateLabel.text!, orderNotes: self.orderNotes.text!, images: imagesURLsCombined)
+        
+        //// //// //// //// ////
         DispatchQueue.main.async {
             self.orderLogger.saveOrder(dateTime: self.dateLabel.text!, orderNotes: self.orderNotes.text!, images: self.orderLogger.coreDataObjectFromImages(images: self.images))
         }
         
         self.performSegue(withIdentifier: "unwindToOrderLog", sender: self)
+        //// //// //// //// ////
         
     }
     
@@ -130,7 +143,6 @@ extension OrderLogViewController: UICollectionViewDelegate, UICollectionViewData
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageView", for: indexPath) as? PhotoCollectionViewCell
         
         cell?.photo.image = images[indexPath.row]
-        
             
         return cell!
         

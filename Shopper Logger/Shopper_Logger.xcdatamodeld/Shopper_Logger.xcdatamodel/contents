@@ -3,7 +3,7 @@
     <entity name="Order" representedClassName=".Order" syncable="YES" codeGenerationType="class">
         <attribute name="dateTime" optional="YES" attributeType="String"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
-        <attribute name="photos" optional="YES" attributeType="Binary"/>
+        <attribute name="photos" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
     </entity>
     <elements>
         <element name="Order" positionX="-63" positionY="-18" width="128" height="74"/>
