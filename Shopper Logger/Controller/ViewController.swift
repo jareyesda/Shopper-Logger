@@ -110,17 +110,17 @@ extension ViewController: SwipeTableViewCellDelegate {
                 self.context.delete(self.orders[indexPath.row])
                 self.orders.remove(at: indexPath.row)
                                 
-                self.orderArray = [OrderModel]()
-                
-                for order in self.orderArray {
-                    let orderToSave = Order(context: self.context)
-                    orderToSave.dateTime = order.dateTime
-                    orderToSave.notes = order.notes
-                    orderToSave.photos = self.orderLogger.coreDataObjectFromImages(images: order.photos)
-                }
-                
-                self.orderLogger.saveOrders(tableViewToReload: self.orderLog)
-                self.orderArray = self.orderLogger.coreToOrderArray(self.orders)
+//                self.orderArray = [OrderModel]()
+//                
+//                for order in self.orderArray {
+//                    let orderToSave = Order(context: self.context)
+//                    orderToSave.dateTime = order.dateTime
+//                    orderToSave.notes = order.notes
+//                    orderToSave.photos = order.photos
+//                }
+//                
+//                self.orderLogger.saveOrders(tableViewToReload: self.orderLog)
+//                self.orderArray = self.orderLogger.coreToOrderArray(self.orders)
                 
                 print("Item deleted!")
                 print(self.orderArray.count)

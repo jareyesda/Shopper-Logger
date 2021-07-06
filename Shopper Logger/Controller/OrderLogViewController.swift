@@ -92,20 +92,20 @@ class OrderLogViewController: UIViewController, UIImagePickerControllerDelegate 
     //MARK: - Log Order Button Functionality
     @IBAction func logOrderButtonPressed(_ sender: UIButton) {
         
-//        if images.count > 0 {
-//            for image in images {
-//                self.imagesURLs.append(self.orderLogger.saveImages(image: image))
-//            }
-//        }
-//
-//        let imagesURLsCombined = self.imagesURLs.joined(separator: ", ")
-        
-//        self.orderLogger.saveOrder(dateTime: self.dateLabel.text!, orderNotes: self.orderNotes.text!, images: imagesURLsCombined)
+        if images.count > 0 {
+            for image in images {
+                self.imagesURLs.append(self.orderLogger.saveImages(image: image))
+            }
+        }
+
+        let imagesURLsCombined = self.imagesURLs.joined(separator: ", ")
+
+        self.orderLogger.saveOrder(dateTime: self.dateLabel.text!, orderNotes: self.orderNotes.text!, images: imagesURLsCombined)
         
         //// //// //// //// ////
-        DispatchQueue.main.async {
-            self.orderLogger.saveOrder(dateTime: self.dateLabel.text!, orderNotes: self.orderNotes.text!, images: self.orderLogger.coreDataObjectFromImages(images: self.images))
-        }
+//        DispatchQueue.main.async {
+//            self.orderLogger.saveOrder(dateTime: self.dateLabel.text!, orderNotes: self.orderNotes.text!, images: self.orderLogger.coreDataObjectFromImages(images: self.images))
+//        }
         
         self.performSegue(withIdentifier: "unwindToOrderLog", sender: self)
         //// //// //// //// ////

@@ -11,7 +11,7 @@ import CoreData
 struct OrderLoggerManager {
         
     //MARK: - Save Order Function
-    func saveOrder(dateTime: String, orderNotes: String, images: Data?) {
+    func saveOrder(dateTime: String, orderNotes: String, images: String?) {
                 
         guard let appDelegate =
             UIApplication.shared.delegate as? AppDelegate else {
@@ -103,7 +103,7 @@ struct OrderLoggerManager {
         for coreOrder in coreOrderArray {
             let orderDateTime = coreOrder.value(forKey: "dateTime") as? String
             let orderNotes = coreOrder.value(forKey: "notes") as? String
-            let orderPhotos = (imagesFromCoreData(object: coreOrder.value(forKey: "photos") as? Data))!
+            let orderPhotos = getImageArray(imageNames: (coreOrder.value(forKey: "photos")) as! [String])
 
             orders.append(OrderModel(dateTime: orderDateTime, notes: orderNotes, photos: orderPhotos))
 
@@ -154,7 +154,7 @@ struct OrderLoggerManager {
         
     }
     
-    func getImages(imageNames: [String]) -> [UIImage] {
+    func getImageArray(imageNames: [String]) -> [UIImage] {
         
         var savedImages = [UIImage]()
         for imageName in imageNames {
@@ -182,21 +182,6 @@ struct OrderLoggerManager {
         }
         
         return filePath
-        
-    }
-    
-    //MARK: - Load Images from File Directory
-    func getImage(imageNames: [String]) -> [UIImage] {
-        
-        var savedImages = [UIImage]()
-        
-        for imageName in imageNames {
-            if let imagePath = getFilePath(fileName: imageName) {
-                savedImages.append(UIImage(contentsOfFile: imagePath)!)
-            }
-        }
-        
-        return savedImages
         
     }
     
